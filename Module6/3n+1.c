@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int cycleLength(long long n)
+{
+    int count = 1;
+    while (n != 1)
+    {
+        if (n % 2 == 0)
+            n = n / 2;
+        else
+            n = 3 * n + 1;
+        count++;
+    }
+    return count;
+}
+int main()
+{
+    int i, j;
+    int start, end;
+    int maxCycle = 0;
+    scanf("%d %d", &i, &j);
+    start = i;
+    end = j;
+    if (start > end)
+    {
+        int temp = start;
+        start = end;
+        end = temp;
+    }
+    for (int n = start; n <= end; n++)
+    {
+        int length = cycleLength(n);
+        if (length > maxCycle)
+            maxCycle = length;
+    }
+    printf("%d %d %d\n", i, j, maxCycle);
+    return 0;
+}
